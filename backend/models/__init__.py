@@ -8,4 +8,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+pysqlite:///connectwave.db'
 db = SQLAlchemy(app)
 
 with app.app_context():
-    db.engine.echo = True
+    db.engine.echo = True # FOR TESTING PURPOSES

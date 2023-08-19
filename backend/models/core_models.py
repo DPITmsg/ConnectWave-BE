@@ -1,5 +1,4 @@
-from backend import app, db
-from sqlalchemy import MetaData
+from models import app, db
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy import ForeignKey 
 from typing import List
@@ -7,7 +6,6 @@ from typing import Optional
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import DeclarativeBase
 
 app.app_context().push()
 
