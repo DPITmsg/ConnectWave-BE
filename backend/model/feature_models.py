@@ -1,14 +1,10 @@
-from models import app, db
-from models.core_models import User
-from sqlalchemy import Table, Column, Integer, String
-from sqlalchemy import ForeignKey 
-from typing import List
+from backend import db
+
 from typing import Optional
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import relationship
 
-app.app_context().push()
+from backend.model.core_models import User
+
 
 class FriendsList(db.Model):
     __tablename__ = "user_to_friends_list"

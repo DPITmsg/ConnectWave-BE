@@ -1,14 +1,7 @@
-from models import app, db
-from sqlalchemy import Table, Column, Integer, String
-from sqlalchemy import ForeignKey 
-from typing import List
-from typing import Optional
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import relationship
 
-app.app_context().push()
-
+db = SQLAlchemy()
 
 class Location(db.Model):
     __tablename__ = "location_table"
@@ -57,7 +50,4 @@ class ActivityToUser(db.Model):
     
     def __repr__(self):
         return f"{self.activity_id} - {self.username}"
-
-session = db.Session(db.engine)
-db.create_all()
 
