@@ -1,6 +1,9 @@
-from main import app, db
-from models.core_models import *
-from models.feature_models import *
+from config import app, db
+from models.activity import Activity
+from models.activity_to_user import ActivityToUser
+from models.friend_list import FriendList
+from models.location import Location
+from models.user import User
 
 def init_db():
     with app.app_context():

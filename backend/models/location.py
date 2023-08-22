@@ -1,4 +1,4 @@
-from main import app, db
+from config import app, db 
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy import ForeignKey 
 from typing import List

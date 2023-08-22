@@ -1,11 +1,10 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from config import app, db
+from models.init_db import init_db
+from models.location import Location
+from controller.router import *
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+pysqlite:///connectwave.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+pysqlite:///:memory:' # USE THIS FOR TESTING PURPOSES ONLY
+init_db()
 
-db = SQLAlchemy(app)
 
-with app.app_context():
-    db.engine.echo = True # FOR TESTING PURPOSES
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

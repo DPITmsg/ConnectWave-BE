@@ -1,11 +1,10 @@
-from main import app, db
+from config import app, db 
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy import ForeignKey 
 from typing import List
 from typing import Optional
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
-
 
 class User(db.Model):
     __tablename__ = "user_table"

@@ -1,7 +1,4 @@
-from backend.models import app, db
-from backend.models import core_models
-from backend.models import feature_models
-from backend.models import init_db
+from models import app, db
 
 class ControlScheme:
     def __init__(self, app, db):
