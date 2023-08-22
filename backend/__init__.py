@@ -1,11 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 
 from backend.init_db import init_db
 from backend.model.core_models import db
 from backend.repository.UserRepository import UserRepository
-
-
 
 
 def create_app():
