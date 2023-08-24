@@ -1,11 +1,7 @@
-from config import app, db 
-from sqlalchemy import Table, Column, Integer, String
-from sqlalchemy import ForeignKey 
-from typing import List
-from typing import Optional
+from backend.config import db
+from backend.models.location import Location
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from models.location import Location
+
 
 class Activity(db.Model):
     __tablename__ = "activity_table"

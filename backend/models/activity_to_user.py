@@ -1,12 +1,8 @@
-from config import app, db 
-from sqlalchemy import Table, Column, Integer, String
-from sqlalchemy import ForeignKey 
-from typing import List
-from typing import Optional
+from backend.config import db
+from backend.models.activity import Activity
+from backend.models.user import User
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from models.activity import Activity
-from models.user import User
+
 
 class ActivityToUser(db.Model):
     __tablename__ = "activity_to_user"

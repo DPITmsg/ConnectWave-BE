@@ -1,10 +1,10 @@
-from config import app, db
+from backend.config import app
 from models.init_db import init_db
-from models.location import Location
-from controller.router import *
 
+app.app_context().push()
 init_db()
 
+import controller.router
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(debug=True , host='0.0.0.0', port=8081)
