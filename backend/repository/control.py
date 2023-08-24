@@ -1,10 +1,11 @@
-from models import app, db
+from backend.config import app, db
+
 
 class ControlScheme:
     def __init__(self, app, db):
         self.__app = app
         self.__db = db
-        self.__session = db.Session(db.engine) 
+        self.__session = db.Session(db.engine)
 
     def add(self, entry):
         try:
@@ -24,7 +25,7 @@ class ControlScheme:
             return None
         else:
             return result
-    
+
     def get_with_key(self, model: db.Model, key):
         try:
             result = self.__session.get(model, key)
@@ -33,15 +34,14 @@ class ControlScheme:
             return None
         else:
             return result
-    
+
     def update(self, model: db.Model, key, newmodel):
         pass
 
     def update_value(self, model: db.Model, key, column, new_value):
         pass
-    
+
     def remove(self, model: db.Model, key):
         pass
 
     # Maybe make a foreach() function in the services folder
-
