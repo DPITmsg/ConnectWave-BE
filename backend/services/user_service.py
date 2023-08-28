@@ -6,5 +6,5 @@ def service_add_user(user):
     return ControlScheme.add(user)
 
 
-def servicer_get_users():
+def service_get_users():
     return ControlScheme.get_all(User)
