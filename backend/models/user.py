@@ -22,4 +22,7 @@ class User(db.Model):
     def __repr__(self):
         return f"({self.username}) {self.display_name}: {self.age}"
 
+    def get_username(self):
+        return self.username
+
 
