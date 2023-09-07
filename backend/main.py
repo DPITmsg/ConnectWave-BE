@@ -8,6 +8,7 @@ init_db()
 #import routes that are exposed to frontend
 import controller.router
 import backend.controller.user_controller
+import backend.controller.login_test
 import backend.controller.login
 
 if __name__ == '__main__':
