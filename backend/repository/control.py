@@ -13,6 +13,7 @@ class ControlScheme:
         try:
             cls.__session.add(entry)
             cls.__session.flush()
+            cls.__session.commit()
         except ProgrammingError:
             print("Programming error, table doesn't exist.")
         else:
@@ -38,6 +39,7 @@ class ControlScheme:
             return None
         else:
             return result
+
 
     @classmethod
     def update(cls, model: db.Model, key, newmodel):
