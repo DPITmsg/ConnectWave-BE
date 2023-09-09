@@ -27,3 +27,5 @@ def create_location():
     created_location = service_add_location(Location(location_x=data['latitude'], location_y=['longitude']))
 
     return jsonify(created_location)
+
+
