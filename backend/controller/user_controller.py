@@ -8,7 +8,7 @@ from backend.config import app
 
 @app.route('/users')
 def get_users():
-    users = servicer_get_users()
+    users = servicer_get_all_users()
     user_data = [{'username': user.username, 'age': user.age, 'display_name': user.display_name,
                   'password': user.password} for user in users]
     return jsonify(user_data)

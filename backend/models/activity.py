@@ -16,4 +16,3 @@ class Activity(db.Model):
     def __repr__(self):
         return f"({self.id}) {self.name}: {self.description} | {self.number_of_participants} participants"
 
-
