@@ -15,7 +15,7 @@ class BaseRepository():
 
     def add(self, entry):
         self.__sesession.add(entry)
-        self._session.flush()
+        self._session.commit()
         return entry
 
     def insert(self, *entities):
@@ -36,14 +36,14 @@ class BaseRepository():
     def update(self, column, value, **kwargs):
         self._session.refresh()
         self._session.execute(update(_model.__tablename__).where(column==value).values(**kwargs)) 
-        self._session.flush() 
+        self._session.commit() 
         self._session.refresh()
         return self.get_with_key(value)
 
     def remove(self, column, value):
         delete_target = self.get_with_key(key)
         self._session.execute(delete(_model.__tablename__).where(column==value))
-        self._session.flush()
+        self._session.commit()
         return delete_target
 
     # Maybe make a foreach() function in the services folder

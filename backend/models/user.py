@@ -12,7 +12,8 @@ class User(db.Model):
     age: Mapped[int] = db.mapped_column()
     display_name: Mapped[str] = db.mapped_column()
     password: Mapped[str] = db.mapped_column()
-    
+    profile_picture: Mapped[Optional[str]] = db.mapped_column
+
     # Other data
     rating: Mapped[Optional[float]] = db.mapped_column()
     completed_activity_count: Mapped[float] = db.mapped_column(default=0)

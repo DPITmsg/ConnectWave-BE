@@ -23,3 +23,4 @@ def service_get_friends(user: User, friend: User):
     return user_friend_list.friend_list
 
 
+
