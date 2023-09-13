@@ -1,7 +1,7 @@
 from flask import jsonify, request, json
 
-from backend.config import app
-from backend.services.location_service import *
+from config import app
+from services.location_service import *
 import logging
 
 # todo rename router.py to location_controller.py

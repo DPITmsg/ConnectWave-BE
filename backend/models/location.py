@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped
 
-from backend.config import db
+from config import db
 
 
 class Location(db.Model):

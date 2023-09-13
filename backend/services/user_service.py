@@ -1,5 +1,5 @@
-from backend.models.user import User
-from backend.repository.user_repository import UserRepository
+from models.user import User
+from repository.user_repository import UserRepository
 
 # todo implement methods mentioned in router.py
 def service_add_user(location: User):

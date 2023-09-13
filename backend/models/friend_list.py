@@ -1,7 +1,7 @@
 from typing import Optional
 
-from backend.config import db
-from backend.models.user import User
+from config import db
+from models.user import User
 from sqlalchemy.orm import Mapped
 
 

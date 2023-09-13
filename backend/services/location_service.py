@@ -1,5 +1,5 @@
-from backend.models.location import Location
-from backend.repository.location_repository import LocationRepository
+from models.location import Location
+from repository.location_repository import LocationRepository
 
 # todo implement methods mentioned in router.py
 def service_add_location(location: Location):

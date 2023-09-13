@@ -1,5 +1,5 @@
-from backend.repository.base_repository import BaseRepository
-from backend.models.activity import Activity
+from repository.base_repository import BaseRepository
+from models.activity import Activity
 
 
 class ActivityRepository(BaseRepository):

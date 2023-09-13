@@ -1,6 +1,6 @@
 from typing import Optional
 
-from backend.config import db
+from config import db
 from sqlalchemy.orm import Mapped
 
 

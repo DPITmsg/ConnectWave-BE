@@ -1,5 +1,5 @@
-from backend.repository.base_repository import BaseRepository
-from backend.models.friend_list import FriendList
+from repository.base_repository import BaseRepository
+from models.friend_list import FriendList
 
 
 class FriendListRepository(BaseRepository):

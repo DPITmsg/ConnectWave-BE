@@ -1,5 +1,5 @@
-from backend.models.activity import Activity
-from backend.repository.activity_repository import ActivityRepository
+from models.activity import Activity
+from repository.activity_repository import ActivityRepository
 
 
 def service_add_activity(activity: Activity):

@@ -2,8 +2,8 @@ import json
 
 from flask import jsonify, request
 
-from backend.services.user_service import *
-from backend.config import app
+from services.user_service import *
+from config import app
 
 
 @app.route('/users')

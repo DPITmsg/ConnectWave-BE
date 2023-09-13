@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.exc import ProgrammingError
 
-from backend.config import db
+from config import db
 
 
 class BaseRepository():

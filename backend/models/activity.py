@@ -1,5 +1,5 @@
-from backend.config import db
-from backend.models.location import Location
+from config import db
+from models.location import Location
 from sqlalchemy.orm import Mapped
 
 
