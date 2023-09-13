@@ -19,9 +19,10 @@ def get_locations():
         for location in locations]
         return jsonify(location_data), 400
     
-    except(error):
+    except Exception as error:
         logging.error(error)
-        return jsonify(error, 400)
+        # return jsonify(error, 400)
+        return jsonify(400)
 
 # take data from the body of the request and create a new Location object
 # todo move model object creation to service. 'Model' objects should be used only in
@@ -33,9 +34,10 @@ def create_location():
         created_location = service_add_location(Location(location_x=data['latitude'], location_y=['longitude']))
         return jsonify(created_location), 200
 
-    except(error):
+    except Exception as error:
         logging.error(error)
-        return jsonify(error), 400
+        # return jsonify(error, 400)
+        return jsonify(400)
 
 
 

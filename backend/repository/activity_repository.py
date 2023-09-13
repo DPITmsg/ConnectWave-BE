@@ -3,5 +3,5 @@ from models.activity import Activity
 
 
 class ActivityRepository(BaseRepository):
-    def __init__():
+    def __init__(self):
         _model = Activity  

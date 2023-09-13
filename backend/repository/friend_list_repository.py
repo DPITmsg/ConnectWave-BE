@@ -3,5 +3,5 @@ from models.friend_list import FriendList
 
 
 class FriendListRepository(BaseRepository):
-    def __init__():
+    def __init__(self):
         _model = FriendList 
