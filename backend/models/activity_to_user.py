@@ -1,6 +1,6 @@
-from backend.config import db
-from backend.models.activity import Activity
-from backend.models.user import User
+from config import db
+from models.activity import Activity
+from models.user import User
 from sqlalchemy.orm import Mapped
 
 

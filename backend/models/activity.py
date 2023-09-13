@@ -1,5 +1,5 @@
-from backend.config import db
-from backend.models.location import Location
+from config import db
+from models.location import Location
 from sqlalchemy.orm import Mapped
 
 
@@ -15,5 +15,4 @@ class Activity(db.Model):
     
     def __repr__(self):
         return f"({self.id}) {self.name}: {self.description} | {self.number_of_participants} participants"
-
 

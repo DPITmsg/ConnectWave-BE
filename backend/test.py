@@ -1,9 +1,6 @@
 from config import app, db
 from models.init_db import init_db
 from models.location import Location
-
-init_db()
-
 # This is used to test the database
 
 with app.app_context():
