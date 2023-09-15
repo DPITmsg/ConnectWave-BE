@@ -30,6 +30,17 @@ class ControlScheme:
             return result
 
     @classmethod
+    def get_limited(cls, model: db.Model, limit: int):
+        try:
+            result = cls.__session.scalars(select(model).limit(limit)).all()
+            # Equivalent with __session.scalars.execute(...).all() (i think at least)
+        except ProgrammingError:
+            print("Programming error, table doesn't exist.")
+            return None
+        else:
+            return result
+
+    @classmethod
     def get_with_key(cls, model: db.Model, key):
         try:
             result = cls.__session.get(model, key)

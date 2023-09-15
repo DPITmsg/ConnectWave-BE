@@ -8,3 +8,7 @@ def service_add_activity(activity):
 
 def service_get_activities():
     return ControlScheme.get_all(Activity)
+
+
+def service_get_paginated_activities(number):
+    return ControlScheme.get_limited(Activity, number)
