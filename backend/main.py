@@ -8,7 +8,8 @@ init_db()
 #import routes that are exposed to frontend
 import controller.location_controller
 import controller.user_controller
-
+import sys
 
 if __name__ == '__main__':
-    app.run(debug=True , host='0.0.0.0', port=8081)     
+    print(sys.path)
+    # app.run(debug=True , host='0.0.0.0', port=8081)     

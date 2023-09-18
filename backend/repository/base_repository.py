@@ -18,7 +18,7 @@ class BaseRepository():
         self._session.commit()
         return entry
 
-    def insert(self, *entities):
+    def add_many(self, *entities):
         self._session.execute(insert(self._model), entities)
         return entities
 
