@@ -24,8 +24,8 @@ class BaseRepository():
 
     def get_all(self, order_filter=None):
         # self._session.refresh(self._model)
-        result = self._session.scalars(select(self._model).order_by(order_filter)).all()
-         # Equivalent with _session.scalars.execute(...).all() (i think at least)
+        result = self._model.query.all()
+        # Equivalent with _session.scalars.execute(...).all() (i think at least)
         return result
 
     def get_with_key(self, key):

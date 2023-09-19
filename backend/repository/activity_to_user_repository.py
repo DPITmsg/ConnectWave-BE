@@ -4,4 +4,4 @@ from models.activity_to_user import ActivityToUser
 
 class ActivityToUserRepository(BaseRepository):
     def __init__(self):
-        _model = ActivityToUser  
+        self._model = ActivityToUser  
