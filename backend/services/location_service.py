@@ -2,7 +2,7 @@ from models.location import Location
 from repository.location_repository import LocationRepository
 
 
-repo = LocationRepository()
+location_repo = LocationRepository()
 
 # todo implement methods mentioned in router.py
 def service_add_location(location_x: int, location_y: int):

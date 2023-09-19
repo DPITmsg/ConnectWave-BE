@@ -2,7 +2,7 @@ from models.user import User
 from repository.user_repository import UserRepository
 
 
-repo = UserRepository()
+user_repo = UserRepository()
 
 
 # todo implement methods mentioned in router.py
