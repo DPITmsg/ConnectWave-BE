@@ -3,6 +3,7 @@ from repository.user_repository import UserRepository
 
 # todo implement methods mentioned in router.py
 def service_add_user(username: str, age: int, display_name: str, password: str, completed_activity_count: float, profile_picture: str = '', rating: float = None):
+    repo = UserRepository()
     user = parse_user(username, age, display_name, password, completed_activity_count)
     return repo.add(user)
 
