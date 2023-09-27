@@ -1,6 +1,6 @@
 import json
 
-from flask import jsonify, request
+from flask import  jsonify, request
 
 from services.user_service import *
 from config import app
@@ -23,13 +23,14 @@ def get_users():
 
 @app.route('/user', methods=['POST'])
 def create_user():
+    print("Working")
     try:
         data = json.loads(request.data)
-        service_add_user(User(username=data['username'], age=data['age'], display_name=data['name'], password="20john05"))
-        return jsonify()    
+        created_user = service_add_user(username=data['username'], age=data['age'], display_name=data['name'], password="20john05")
+        return created_user.username, 200
 
     except Exception as error:
         logging.error(error)
-        # return jsonify(error), 400
-        return jsonifiy(400)
+        service_rollback()
+        return jsonify(error.__str__(), 400)
 

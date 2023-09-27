@@ -14,7 +14,7 @@ class BaseRepository():
         self._model = model
 
     def add(self, entry):
-        self.__sesession.add(entry)
+        self._session.add(entry)
         self._session.commit()
         return entry
 
@@ -45,5 +45,8 @@ class BaseRepository():
         self._session.execute(delete(self._model.__tablename__).where(column=value))
         self._session.commit()
         return delete_target
+
+    def rollback(self):
+        self._session.rollback()
 
     # Maybe make a foreach() function in the services folder
