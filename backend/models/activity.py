@@ -16,13 +16,13 @@ class Activity(db.Model):
     time: Mapped[str] = db.mapped_column()
     author: Mapped[str] = db.mapped_column()
 
-    tags: Mapped[List[str]] = db.mapped_column()
+    tags: Mapped[str] = db.mapped_column()
     category: Mapped[str] = db.mapped_column()
     description: Mapped[str] = db.mapped_column()
     address: Mapped[str] = db.mapped_column()
     location_id: Mapped[int] = db.mapped_column(db.ForeignKey(Location.id))
 
-    participants = Mapped[List[str]] = db.mapped_column()
+    participants: Mapped[str] = db.mapped_column()
     max_participants: Mapped[int] = db.mapped_column(default=0)
 
     def __repr__(self):
