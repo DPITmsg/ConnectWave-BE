@@ -8,6 +8,7 @@ app.app_context().push()
 #import routes that are exposed to frontend
 import controller.location_controller
 import controller.user_controller
+import controller.activity_controller
 from services.location_service import *
 from repository.location_repository import *
 import sys
