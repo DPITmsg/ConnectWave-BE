@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from config import db
 from sqlalchemy.orm import Mapped
@@ -13,10 +13,18 @@ class User(db.Model):
     display_name: Mapped[str] = db.mapped_column()
     password: Mapped[str] = db.mapped_column()
     profile_picture: Mapped[Optional[str]] = db.mapped_column
+    about: Mapped[str] = db.mapped_column()
+    interests: Mapped[List[str]] = db.mapped_column
+    tags: Mapped[List[str]] = db.mapped_column
+    activities_created: Mapped[List[int]] = db.mapped_column(default=0)
+    activities_enrolled: Mapped[List[int]] = db.mapped_column(default=0)
+    friends: Mapped[List[str]] = db.mapped_column(default=[])
+
+
 
     # Other data
     rating: Mapped[Optional[float]] = db.mapped_column()
-    completed_activity_count: Mapped[float] = db.mapped_column(default=0)
+    completed_activity_count: Mapped[int] = db.mapped_column(default=0)
     # favorite_category: Mapped[]
 
 
