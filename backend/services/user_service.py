@@ -1,6 +1,10 @@
 from models.user import User
 from repository.user_repository import UserRepository
 
+# from backend.models.user import User
+# from backend.repository.user_repository import UserRepository
+
+
 # todo implement methods mentioned in router.py
 class UserService(BaseRepository):
     _repo = UserRepository()
