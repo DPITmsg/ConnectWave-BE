@@ -4,25 +4,25 @@ from repository.friend_list_repository import FriendListRepository
 
 class FriendListService(BaseService):
     _repo = FriendListRepository()
+    
+    def add_friend(username, friendname):
+        user_friend_list: Friendlist = self._repo.get_with_key(username)
+        friend_friend_list: Friendlist = self._repo.get_with_key(friendname)
 
-    def add_friend(user: User, friend: User):
-        user_friend_list: Friendlist = self._repo.get_with_key(user.username)
-        friend_friend_list: Friendlist = self._repo.get_with_key(friend.username)
-
-        if (user_friend_list.friend_list.find(friend.username) == -1):
-            self._repo.update(username, friend.username, friend_friend_list = friend_friend_list + user.username)
-            return self._repo.update(username, user.username, user_friend_list = user_friend_list + friend.username), 
+        if (user_friend_list.friend_list.find(friendname) == -1):
+            self._repo.update(username, friendname, friend_friend_list = friend_friend_list + username)
+            return self._repo.update(friendname, username, user_friend_list = user_friend_list + friendname), 
         
-    def remove_friend(user: User, friend: User):
-        user_friend_list: Friendlist = self._repo.get_with_key(user.username)
-        friend_friend_list: Friendlist = self._repo.get_with_key(friend.username)
+    def remove_friend(username, friendname):
+        user_friend_list: Friendlist = self._repo.get_with_key(username)
+        friend_friend_list: Friendlist = self._repo.get_with_key(friendname)
 
-        if (user_friend_list.friend_list.find(friend.username) != -1):
-            self._repo.update(username, friend.username, friend_friend_list = friend_friend_list.replace(user.username, ''))
-            return self._repo.update(username, user.username, user_friend_list = user_friend_list.replace(friend.username, '')),
+        if (user_friend_list.friend_list.find(friendname) != -1):
+            self._repo.update(friendname, username, friend_friend_list = friend_friend_list.replace(username, ''))
+            return self._repo.update(username, friendname, user_friend_list = user_friend_list.replace(friendname, '')),
 
-    def get_friends(user: User, friend: User):
-        user_friend_list:FriendList = self._repo.get_with_key(user.username)
+    def get_friends(username):
+        user_friend_list:FriendList = self._repo.get_with_key(username)
         return user_friend_list.friend_list
 
 

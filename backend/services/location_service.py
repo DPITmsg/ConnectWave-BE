@@ -19,7 +19,7 @@ class LocationService(BaseRepository):
         return self._repo.get_with_key(location_id)
 
     def get_all_locations():
-        print(repo._model)
+        print(self._repo._model)
         return self._repo.get_all()
 
     def parse_location(location_x: int, location_y: int):
