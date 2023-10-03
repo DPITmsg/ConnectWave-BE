@@ -1,7 +1,7 @@
 from flask import jsonify, request, json
 
 from config import app
-from services.location_service import *
+from services.location_service import LocationService 
 from services.user_service import *
 import logging
 
@@ -14,8 +14,9 @@ def hello_world():
 # todo move model object mapping to data to the service.
 @app.route('/locations', methods=['GET'])
 def get_locations():
+    service = LocationService()
     try:
-        locations = service_get_all_locations()
+        locations = service.get_all_locations()
         location_data = [{'id': location.id, 'longitude': location.location_y, 'latitude': location.location_x}
         for location in locations]
         return jsonify(location_data), 400
@@ -30,9 +31,10 @@ def get_locations():
 #  repositories and services, and 'data' only in services and controllers
 @app.route('/location', methods=['POST'])
 def create_location():
+    service = LocationService()
     data = json.loads(request.data)
     try:
-        created_location = service_add_location(Location(location_x=data['latitude'], location_y=['longitude']))
+        created_location = service.add_location(Location(location_x=data['latitude'], location_y=['longitude']))
         return jsonify(created_location), 200
 
     except Exception as error:

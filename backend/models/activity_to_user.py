@@ -9,7 +9,7 @@ class ActivityToUser(db.Model):
 
     activity_id: Mapped[int] = db.mapped_column(db.ForeignKey(Activity.id), primary_key=True)
     username: Mapped[str] = db.mapped_column(db.ForeignKey(User.username), primary_key=True)
-    administrator: Mapped[bool] = db.mapped_column()
+    administrator: Mapped[bool] = db.mapped_column(default=False)
     
     def __repr__(self):
         return f"{self.activity_id} - {self.username}"

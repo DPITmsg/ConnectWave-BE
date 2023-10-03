@@ -28,6 +28,10 @@ class BaseRepository():
         # Equivalent with _session.scalars.execute(...).all() (i think at least)
         return result
 
+    def get_where(self, column, value):
+        result = select(self._model).filter_by(column=value)
+        return result
+
     def get_with_key(self, key):
         # self._session.refresh(self._model)
         result = self._session.get(_model, key)
