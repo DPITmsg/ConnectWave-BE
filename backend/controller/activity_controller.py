@@ -3,6 +3,7 @@ import json
 from flask import jsonify, request
 
 from services.activity_service import *
+from backend.services.activity_service import ActivityService
 from config import app
 import logging
 
@@ -10,10 +11,10 @@ import logging
 @app.route('/activities')
 def get_activities():
     try:
-        activities = service_get_all_activities()
-        activity_data = [{'id': activity.id, 'name': activity.name, 'category': activity.category,
-                          'description': activity.description, 'location_id': activity.location_id,
-                          'number_of_participants': activity.number_of_participants} for activity in activities]
+        service = ActivityService()
+        activities = service.get_all_activities()
+        activity_data = [{'id': activity.id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time, 'author': activity.author,  'title': activity.name, 'tags': activity.tags,
+                          'category': activity.category, 'address': activity.address, 'description': activity.description, 'location_id': activity.location_id, 'participants': activity.participants, 'maxParticipants': activity.max_participants} for activity in activities]
         return jsonify(activity_data)
 
     except Exception as error:

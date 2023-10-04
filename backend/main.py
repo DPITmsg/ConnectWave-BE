@@ -1,9 +1,9 @@
 from config import app, db
-# from models.init_db import init_db
+from models.init_db import init_db
 
 #start application and generate database
 app.app_context().push()
-# init_db()
+init_db()
 
 #import routes that are exposed to frontend
 import controller.location_controller

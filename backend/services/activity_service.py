@@ -3,7 +3,7 @@ from repository.activity_repository import ActivityRepository
 from services.base_service import BaseService
 
 class ActivityService(BaseService):
-    _repo = ActivityRepository
+    _repo = ActivityRepository()
     def add_activity(self, activity_id: int, name: str, category: str, description: str, location_id: str, number_of_participants: int):
         activity = parse_activity(activity_id, name, category, description, location_id, number_of_participants)
         return self._repo.add(activity)
