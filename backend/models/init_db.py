@@ -6,11 +6,8 @@ from models.location import Location
 
 
 # importing models is required before initializing the database
-from models.activity import Activity
 from models.activity_to_user import ActivityToUser
 from models.friend_list import FriendList
-from models.location import Location
-from models.user import User
 
 
 def init_db():

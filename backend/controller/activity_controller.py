@@ -4,7 +4,6 @@ from flask import jsonify, request
 
 from services.activity_service import *
 from config import app
-from models.activity import Activity
 import logging
 
 

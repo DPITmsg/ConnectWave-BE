@@ -1,31 +1,32 @@
 from models.user import User
 from repository.user_repository import UserRepository
+from backend.services.base_service import BaseService
 
 # from backend.models.user import User
 # from backend.repository.user_repository import UserRepository
 
 
 # todo implement methods mentioned in router.py
-class UserService(BaseRepository):
+class UserService(BaseService):
     _repo = UserRepository()
 
-    def add_user(username: str, age: int, display_name: str, password: str, completed_activity_count: int = 0, profile_picture: str = '', rating: float = None):
+    def add_user(self, username: str, age: int, display_name: str, password: str, completed_activity_count: int = 0, profile_picture: str = '', rating: float = None):
         user = parse_user(username, age, display_name, password, completed_activity_count)
         return self._repo.add(user)
     
-    def remove_user(column, value):
+    def remove_user(self, column, value):
         return self._repo.remove(column, value)
     
-    def update_user(column, value, **kwargs):
+    def update_user(self, column, value, **kwargs):
         return self._repo.update(column, value, **kwargs)
     
-    def get_user(user_id):
+    def get_user(self, user_id):
         return self._repo.get_with_key(user_id)
     
-    def get_all_users():
+    def get_all_users(self, ):
         return self._repo.get_all()
     
-    def rollback():
+    def rollback(self, ):
         self._repo.rollback()
     
     

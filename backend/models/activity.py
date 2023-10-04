@@ -7,6 +7,7 @@ from sqlalchemy.orm import Mapped
 
 class Activity(db.Model):
     __tablename__ = "activity_table"
+    __table_args__ = {'extend_existing': True}
 
     id: Mapped[int] = db.mapped_column(primary_key=True, autoincrement=True)
 
