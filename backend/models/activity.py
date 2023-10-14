@@ -3,6 +3,7 @@ from typing import List
 from config import db
 from models.location import Location
 from sqlalchemy.orm import Mapped
+from backend.models.user import User
 
 
 class Activity(db.Model):
@@ -15,7 +16,7 @@ class Activity(db.Model):
     start_date: Mapped[str] = db.mapped_column()
     end_date: Mapped[str] = db.mapped_column()
     time: Mapped[str] = db.mapped_column()
-    author: Mapped[str] = db.mapped_column()
+    author: Mapped[str] = db.mapped_column(db.ForeignKey(User.username))
 
     tags: Mapped[str] = db.mapped_column()
     category: Mapped[str] = db.mapped_column()
@@ -24,7 +25,7 @@ class Activity(db.Model):
     location_id: Mapped[int] = db.mapped_column(db.ForeignKey(Location.id))
 
     participants: Mapped[str] = db.mapped_column()
-    max_participants: Mapped[int] = db.mapped_column(default=0)
+    max_participants: Mapped[int] = db.mapped_column()
 
     def __repr__(self):
         return f"({self.id}) {self.name}: {self.description} | {self.number_of_participants} participants"
