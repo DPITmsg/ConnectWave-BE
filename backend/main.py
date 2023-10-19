@@ -1,9 +1,11 @@
 from config import app, db
 from models.init_db import init_db
-
+from the_adder_of_stuff import add_stuff
 #start application and generate database
 app.app_context().push()
-init_db()
+# init_db()
+
+add_stuff()
 
 #import routes that are exposed to frontend
 import controller.location_controller

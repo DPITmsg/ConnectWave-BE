@@ -18,9 +18,8 @@ def get_users():
    
     except Exception as error:
         logging.error(error)
-        # return jsonify(error), 400
-        return jsonify(400)
-
+        service.rollback()
+        return jsonify(error.__str__(), 400)
 
 @app.route('/user', methods=['POST'])
 def create_user():

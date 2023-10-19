@@ -23,8 +23,8 @@ def get_locations():
     
     except Exception as error:
         logging.error(error)
-        # return jsonify(error, 400)
-        return jsonify(400)
+        service.rollback()
+        return jsonify(error.__str__(), 400)
 
 # take data from the body of the request and create a new Location object
 # todo move model object creation to service. 'Model' objects should be used only in
@@ -39,8 +39,8 @@ def create_location():
 
     except Exception as error:
         logging.error(error)
-        # return jsonify(error, 400)
-        return jsonify(400)
+        service.rollback()
+        return jsonify(error.__str__(), 400)
 
 
 

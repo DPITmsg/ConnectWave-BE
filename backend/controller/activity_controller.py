@@ -19,20 +19,19 @@ def get_activities():
 
     except Exception as error:
         logging.error(error)
-        # return jsonify(error), 400
-        return jsonify(400)
-
+        service.rollback()
+        return jsonify(error.__str__(), 400)
 
 @app.route('/activity', methods=['POST'])
 def create_activity():
-    print("Working")
+    service = ActivityService()
     try:
         data = json.loads(request.data)
-        created_activity = service_add_activity(id=data['id'], name=data['name'], category=data['category'],
+        created_activity = service.add_activity(id=data['id'], name=data['name'], category=data['category'],
                                         description=data['description'])
         return created_user.username, 200
 
     except Exception as error:
         logging.error(error)
-        service_rollback()
+        service.rollback()
         return jsonify(error.__str__(), 400)
