@@ -1,6 +1,6 @@
 import json
 
-from flask import jsonify, request
+from flask import jsonify, request, Response
 
 from services.activity_service import *
 from backend.services.activity_service import ActivityService
@@ -8,7 +8,7 @@ from config import app
 import logging
 
 
-@app.route('/activities')
+@app.route('/activities', methods=['GET'])
 def get_activities():
     try:
         service = ActivityService()
@@ -31,8 +31,6 @@ def get_activities():
 def create_activity():
     print("Working")
     service = ActivityService()
-    # TODO: 1. Add input fields to service_add_activity
-    # TODO: 2. Return details of activity - only the id
     try:
         data = json.loads(request.data)
         created_activity = service.add_activity(id=data['id'], name=data['name'], category=data['category'],
@@ -41,7 +39,7 @@ def create_activity():
                                                 start_date=data['start_date'], end_date=data['end_date'],
                                                 time=data['time'], tags=data['tags'], address=data['address'],
                                                 author=data['author'], participants=data['participants'])
-        return [created_activity.id, 200]
+        return str(created_activity.id), 201
 
     except Exception as error:
         logging.error(error)
