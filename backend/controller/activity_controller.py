@@ -33,7 +33,7 @@ def get_activity_by_id():
         service = ActivityService()
         activity = service.get_activity(request.args.get('id'))
         activity_data = [
-            {'id': activity.id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
+            {'id': activity.id, 'start_date': activity.start_date, 'end_date': activity.end_date, 'time': activity.time,
              'author': activity.author, 'title': activity.name, 'tags': activity.tags,
              'category': activity.category, 'address': activity.address, 'description': activity.description,
              'location_id': activity.location_id, 'participants': activity.participants,
@@ -52,10 +52,10 @@ def create_activity():
     service = ActivityService()
     try:
         data = json.loads(request.data)
-        created_activity = service.add_activity(id=data['id'], name=data['name'], category=data['category'],
-                                                description=data['description'], location_id=data['location_id'],
-                                                max_participants=data['max_participants'],
-                                                start_date=data['start_date'], end_date=data['end_date'],
+        created_activity = service.add_activity(id=data['id'], name=data['title'], category=data['category'],
+                                                description=data['description'], location_id=data['location'],
+                                                max_participants=data['maxParticipants'],
+                                                start_date=data['date'], end_date=data['endDate'],
                                                 time=data['time'], tags=data['tags'], address=data['address'],
                                                 author=data['author'], participants=data['participants'])
         return str(created_activity.id), 201
