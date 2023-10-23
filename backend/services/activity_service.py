@@ -30,7 +30,7 @@ class ActivityService(BaseService):
         return self._repo.update(column, value, **kwargs)
 
     def get_activity(self, activity_id):
-        return self._repo.get_with_key(activity_id)
+        return self._repo.get_by_id(activity_id)
 
     def get_all_activities(self):
         return self._repo.get_all()

@@ -27,6 +27,25 @@ def get_activities():
         return jsonify(400)
 
 
+@app.route('/activity_by_id', methods=['GET'])
+def get_activity_by_id():
+    try:
+        service = ActivityService()
+        activity = service.get_activity(request.args.get('id'))
+        activity_data = [
+            {'id': activity.id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
+             'author': activity.author, 'title': activity.name, 'tags': activity.tags,
+             'category': activity.category, 'address': activity.address, 'description': activity.description,
+             'location_id': activity.location_id, 'participants': activity.participants,
+             'maxParticipants': activity.max_participants}]
+        return jsonify(activity_data)
+
+    except Exception as error:
+        logging.error(error)
+        # return jsonify(error), 400
+        return "Not found", 404
+
+
 @app.route('/activity', methods=['POST'])
 def create_activity():
     print("Working")
