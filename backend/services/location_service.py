@@ -16,7 +16,7 @@ class LocationService(BaseService):
         return self._repo.update(column, value, **kwargs)
 
     def get_location(self, location_id):
-        return self._repo.get_with_key(location_id)
+        return self._repo.get_by_id(location_id)
 
     def get_all_locations(self):
         return self._repo.get_all()

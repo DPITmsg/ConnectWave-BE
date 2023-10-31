@@ -20,6 +20,6 @@ class ActivityToUserService(BaseService):
         activityToUser = get_activity_to_user(username, activity_id)
         return activityToUser
 
-
     def remove_user_from_activity(self, username, activity_id):
         self._repo.remove(username, activity_id)
+

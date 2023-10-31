@@ -6,12 +6,14 @@ from sqlalchemy.orm import Mapped
 
 class User(db.Model):
     __tablename__ = "user_table"
+    __table_args__ = {'extend_existing': True}
     
     # Functional Variables
     username: Mapped[str] = db.mapped_column(primary_key=True)
     age: Mapped[int] = db.mapped_column()
     display_name: Mapped[str] = db.mapped_column()
     password: Mapped[str] = db.mapped_column()
+
     profile_picture: Mapped[Optional[str]] = db.mapped_column()
     about: Mapped[Optional[str]] = db.mapped_column()
     interests: Mapped[Optional[str]] = db.mapped_column()
@@ -19,7 +21,6 @@ class User(db.Model):
     activities_created: Mapped[Optional[str]] = db.mapped_column(default=0)
     activities_enrolled: Mapped[Optional[str]] = db.mapped_column(default=0)
     friends: Mapped[Optional[str]] = db.mapped_column(default="")
-
 
 
     # Other data

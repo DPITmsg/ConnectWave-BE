@@ -2,11 +2,25 @@ from models.activity import Activity
 from repository.activity_repository import ActivityRepository
 from services.base_service import BaseService
 
+
 class ActivityService(BaseService):
     _repo = ActivityRepository()
-    def add_activity(self, name: str, category: str, description: str, location_id: str, number_of_participants: int):
-        activity = self.parse_activity(name=name, category=category, description=description, 
-        location_id=location_id, number_of_participants=number_of_participants)
+
+    def parse_activity(self, activity_id: int, name: str, category: str, description: str, location_id: str,
+                       max_participants: int,
+                       start_date: str, end_date: str, time: str, tags: str, address: str, author: str,
+                       participants: str):
+        return Activity(activity_id=activity_id, name=name, category=category, description=description,
+                        location_id=location_id, max_participants=max_participants, start_date=start_date,
+                        end_date=end_date, time=time, tags=tags, address=address, author=author,
+                        participants=participants)  # Function exists in case we need to do something else when creating an activity
+
+    def add_activity(self, activity_id: int, name: str, category: str, description: str, location_id: int,
+                     max_participants: int,
+                     start_date: str, end_date: str, time: str, tags: str, address: str, author: str,
+                     participants: str):
+        activity = self.parse_activity(activity_id, name, category, description, location_id, max_participants, start_date,
+                                  end_date, time, tags, address, author, participants)
         return self._repo.add(activity)
 
     def remove_activity(self, column, value):
@@ -16,11 +30,10 @@ class ActivityService(BaseService):
         return self._repo.update(column, value, **kwargs)
 
     def get_activity(self, activity_id):
-        return self._repo.get_with_key(activity_id)
+        return self._repo.get_by_id(activity_id)
 
     def get_all_activities(self):
-            return self._repo.get_all()
+        return self._repo.get_all()
 
-    def parse_activity(self, name: str, category: str, description: str, location_id: str, number_of_participants: int):
-        return Activity(name=name, category=category, description=description, 
-        location_id=location_id, number_of_participants=number_of_participants) # Function exists in case we need to do something else when creating an activity 
+    def rollback(self):
+        self._repo.rollback()
