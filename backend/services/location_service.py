@@ -6,7 +6,7 @@ class LocationService(BaseService):
     _repo = LocationRepository()
 
     def add_location(self, location_x: int, location_y: int):
-        location = parse_location(location_x, location_y)
+        location = self.parse_location(location_x, location_y)
         return self._repo.add(location)
 
     def remove_location(self, column, value):
