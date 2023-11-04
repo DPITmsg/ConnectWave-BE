@@ -5,6 +5,7 @@ from flask import jsonify, request, Response
 from services.activity_service import *
 from backend.services.activity_service import ActivityService
 from backend.services.location_service import LocationService
+from backend.services.user_service import UserService
 from config import app
 import logging
 
@@ -59,22 +60,42 @@ def get_activity_by_id():
 
 @app.route('/activity', methods=['POST'])
 def create_activity():
+    # TODO: fix tags and participants params (make them a list)
     print("Working")
     activity_service = ActivityService()
     location_service = LocationService()
+    user_service = UserService()
     try:
         data = json.loads(request.data)
+
         location = data['location']
         location_x = location.get('latitude')
         location_y = location.get('longitude')
         created_location = location_service.add_location(location_x, location_y)
+
+        tags = data['tags']
+        string_of_tags = ""
+        for tag in tags:
+            string_of_tags += tag
+            string_of_tags += ", "
+        string_of_tags = string_of_tags[:len(string_of_tags) - 2]
+
+        participants = data['participants']
+        string_of_participants = ""
+        for participant in participants:
+            user = user_service.get_user(participant)
+            if user is not None:
+                string_of_participants += user.display_name
+                string_of_participants += ", "
+        string_of_participants = string_of_participants[:len(string_of_participants) - 2]
+
         created_activity = activity_service.add_activity(id=data['id'], name=data['title'], category=data['category'],
                                                          description=data['description'],
                                                          location_id=created_location.id,
                                                          max_participants=data['maxParticipants'],
                                                          start_date=data['date'], end_date=data['endDate'],
-                                                         time=data['time'], tags=data['tags'], address=data['address'],
-                                                         author=data['author'], participants=data['participants'])
+                                                         time=data['time'], tags=string_of_tags, address=data['address'],
+                                                         author=data['author'], participants=string_of_participants)
         return str(created_activity.id), 201
 
     except Exception as error:
