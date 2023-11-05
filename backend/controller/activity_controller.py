@@ -3,9 +3,9 @@ import json
 from flask import jsonify, request, Response
 
 from services.activity_service import *
-from backend.services.activity_service import ActivityService
-from backend.services.location_service import LocationService
-from backend.services.user_service import UserService
+from services.activity_service import ActivityService
+from services.location_service import LocationService
+from services.user_service import UserService
 from config import app
 import logging
 
@@ -82,20 +82,22 @@ def create_activity():
 
         participants = data['participants']
         string_of_participants = ""
+        '''
         for participant in participants:
             user = user_service.get_user(participant)
             if user is not None:
                 string_of_participants += user.display_name
                 string_of_participants += ", "
         string_of_participants = string_of_participants[:len(string_of_participants) - 2]
+        '''
 
-        created_activity = activity_service.add_activity(id=data['id'], name=data['title'], category=data['category'],
+        created_activity = activity_service.add_activity(name=data['title'], category=data['category'],
                                                          description=data['description'],
                                                          location_id=created_location.id,
                                                          max_participants=data['maxParticipants'],
                                                          start_date=data['date'], end_date=data['endDate'],
                                                          time=data['time'], tags=string_of_tags, address=data['address'],
-                                                         author=data['author'], participants=string_of_participants)
+                                                         author=data['author'], participants='JonSnow08')
         return str(created_activity.id), 201
 
     except Exception as error:

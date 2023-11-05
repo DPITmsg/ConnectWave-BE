@@ -16,4 +16,3 @@ import sys
 if __name__ == '__main__':
     print(sys.path)
     app.run(debug=True , host='0.0.0.0', port=8081)
-    print(service_add_location(3, 5))

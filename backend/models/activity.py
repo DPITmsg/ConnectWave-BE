@@ -3,7 +3,7 @@ from typing import List
 from config import db
 from models.location import Location
 from sqlalchemy.orm import Mapped
-from backend.models.user import User
+from models.user import User
 
 
 class Activity(db.Model):

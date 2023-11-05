@@ -1,8 +1,8 @@
 from flask import render_template, request, redirect, url_for, session
-from backend.config import app
-# from backend.repository.user_repo import get_account_by_username_and_password, get_account_by_username
-from backend.services.user_service import UserService
-from backend.models.user import User
+from config import app
+# from repository.user_repo import get_account_by_username_and_password, get_account_by_username
+from services.user_service import UserService
+from models.user import User
 import random
 import string
 

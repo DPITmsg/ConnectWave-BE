@@ -1,5 +1,5 @@
 from repository.base_repository import BaseRepository
-from backend.models.activity import Activity
+from models.activity import Activity
 
 class BaseService():
     _repo = BaseRepository(Activity)
