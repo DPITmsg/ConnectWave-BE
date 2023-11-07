@@ -10,7 +10,7 @@ class Activity(db.Model):
     __tablename__ = "activity_table"
     __table_args__ = {'extend_existing': True}
 
-    activity_id: Mapped[int] = db.mapped_column(primary_key=True, autoincrement=True)
+    id: Mapped[int] = db.mapped_column(primary_key=True, autoincrement=True)
 
     name: Mapped[str] = db.mapped_column()
     start_date: Mapped[Optional[str]] = db.mapped_column()

@@ -13,7 +13,7 @@ def get_activities():
     try:
         service = ActivityToUserService()
         data = json.loads(request.data)
-        created_join = service.join_activity(username=data['username'], activity_id=data['activity_id'])
+        created_join = service.join_activity(username=data['username'], id=data['id'])
         return jsonify(created_join)
 
     except Exception as error:
@@ -27,8 +27,8 @@ def create_activity():
     service = ActivityToUserService()
     try:
         data = json.loads(request.data)
-        created_quit = service.remove_user_from_activity(username=data['username'], activity_id=data['activity_id'])
-        return jsonify(created_quit)
+        code = service.remove_user_from_activity(username=data['username'], id=data['id'])
+        return jsonify(code)
 
     except Exception as error:
         logging.error(error)

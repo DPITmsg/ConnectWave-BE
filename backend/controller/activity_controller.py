@@ -21,7 +21,7 @@ def get_activities():
             else:
                 location = {'latitude': location_service.get_location(activity.location_id).location_x,
                             'longitude': location_service.get_location(activity.location_id).location_y}
-            activity_data.append({'id': activity.activity_id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
+            activity_data.append({'id': activity.id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
                  'author': activity.author, 'title': activity.name, 'tags': activity.tags,
                  'category': activity.category, 'address': activity.address, 'description': activity.description,
                  'location': location, 'participants': activity.participants, 'maxParticipants': activity.max_participants})
@@ -65,14 +65,14 @@ def create_activity():
         location_x = location.get('latitude')
         location_y = location.get('longitude')
         created_location = location_service.add_location(location_x, location_y)
-        created_activity = activity_service.add_activity(activity_id=data['id'], name=data['title'], category=data['category'],
+        created_activity = activity_service.add_activity(id=data['id'], name=data['title'], category=data['category'],
                                                          description=data['description'],
                                                          location_id=created_location.id,
                                                          max_participants=data['maxParticipants'],
                                                          start_date=data['date'], end_date=data['endDate'],
                                                          time=data['time'], tags=data['tags'], address=data['address'],
                                                          author=data['author'], participants=data['participants'])
-        return str(created_activity.activity_id), 201
+        return str(created_activity.id), 201
 
     except Exception as error:
         logging.error(error)
