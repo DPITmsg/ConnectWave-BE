@@ -3,8 +3,7 @@ import json
 from flask import jsonify, request, Response
 
 from services.activity_service import *
-from backend.services.activity_service import ActivityService
-from backend.services.location_service import LocationService
+from services.activity_service import ActivityService
 from config import app
 import logging
 
@@ -30,9 +29,8 @@ def get_activities():
 
     except Exception as error:
         logging.error(error)
-        # return jsonify(error), 400
-        return jsonify(400)
-
+        service.rollback()
+        return jsonify(error.__str__(), 400)
 
 @app.route('/activity_by_id', methods=['GET'])
 def get_activity_by_id():
@@ -59,7 +57,6 @@ def get_activity_by_id():
 
 @app.route('/activity', methods=['POST'])
 def create_activity():
-    print("Working")
     activity_service = ActivityService()
     location_service = LocationService()
     try:

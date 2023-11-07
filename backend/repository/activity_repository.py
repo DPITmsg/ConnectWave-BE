@@ -6,5 +6,5 @@ class ActivityRepository(BaseRepository):
     def __init__(self):
         self._model = Activity
 
-    def get_by_id(self, activity_id):
-        return Activity.query.get(int(activity_id))
+    def get_by_id(self, id):
+        return Activity.query.get(int(id))

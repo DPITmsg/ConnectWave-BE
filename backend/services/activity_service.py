@@ -6,11 +6,11 @@ from services.base_service import BaseService
 class ActivityService(BaseService):
     _repo = ActivityRepository()
 
-    def parse_activity(self, activity_id: int, name: str, category: str, description: str, location_id: str,
+    def parse_activity(self, id: int, name: str, category: str, description: str, location_id: str,
                        max_participants: int,
                        start_date: str, end_date: str, time: str, tags: str, address: str, author: str,
                        participants: str):
-        return Activity(id=activity_id, name=name, category=category, description=description,
+        return Activity(id=id, name=name, category=category, description=description,
                         location_id=location_id, max_participants=max_participants, start_date=start_date,
                         end_date=end_date, time=time, tags=tags, address=address, author=author,
                         participants=participants)  # Function exists in case we need to do something else when creating an activity
@@ -29,8 +29,8 @@ class ActivityService(BaseService):
     def update_activity(self, column, value, **kwargs):
         return self._repo.update(column, value, **kwargs)
 
-    def get_activity(self, activity_id):
-        return self._repo.get_by_id(activity_id)
+    def get_activity(self, id):
+        return self._repo.get_by_id(id)
 
     def get_all_activities(self):
         return self._repo.get_all()

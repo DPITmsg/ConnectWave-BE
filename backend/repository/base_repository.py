@@ -32,7 +32,9 @@ class BaseRepository():
         result = select(self._model).filter_by(column=value)
         return result
 
-
+    def get_with_many(self, **pairs):
+        result = select(self._model).filter_by(**pairs)
+        return result
 
     def get_with_key(self, key):
         # self._session.refresh(self._model)
