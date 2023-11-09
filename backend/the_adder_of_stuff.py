@@ -22,11 +22,11 @@ def add_stuff():
     loc_s.add_location(46.7703, 23.6034)
     loc_s.add_location(46.7661, 23.6261)
 
-    act_s.add_activity(name="Alpha's Activity", category="Sport", description="This is Alpha's activity.", location_id=1, number_of_participants=111)
-    act_s.add_activity(name="Beta's Activity", category="Sport", description="This is Beta's activity.", location_id=2, number_of_participants=222)
-    act_s.add_activity(name="Gamma's Activity", category="Sport", description="This is Gamma's activity.", location_id=3, number_of_participants=333)
-    act_s.add_activity(name="Delta's Activity", category="Sport", description="This is Delta's activity.", location_id=4, number_of_participants=444)
-    act_s.add_activity(name="Epsilon's Activity", category="Sport", description="This is Epsilon's activity.", location_id=5, number_of_participants=555)
+    act_s.add_activity(name="Alpha's Activity", category="Sport", description="This is Alpha's activity.", location_id=1, participants=111, max_participants=1110, start_date="", end_date="", time="", tags="", address="Alpha's Street", author="alpha")
+    act_s.add_activity(name="Beta's Activity", category="Sport", description="This is Beta's activity.", location_id=2, participants=222, max_participants=2220, start_date="", end_date="", time="", tags="", address="Beta's Street", author="beta")
+    act_s.add_activity(name="Gamma's Activity", category="Sport", description="This is Gamma's activity.", location_id=3, participants=333, max_participants=3330, start_date="", end_date="", time="", tags="", address="Gamma's Street", author="gamma")
+    act_s.add_activity(name="Delta's Activity", category="Sport", description="This is Delta's activity.", location_id=4, participants=444, max_participants=4440, start_date="", end_date="", time="", tags="", address="Delta's Street", author="delta")
+    act_s.add_activity(name="Epsilon's Activity", category="Sport", description="This is Epsilon's activity.", location_id=5, participants=555, max_participants=5550, start_date="", end_date="", time="", tags="", address="Epsilon's Street", author="epsilon")
 
 
 

@@ -3,7 +3,7 @@ import json
 from flask import jsonify, request
 
 from services.activity_service import *
-from backend.services.activity_to_user_service import ActivityToUserService
+from services.activity_to_user_service import ActivityToUserService
 from config import app
 import logging
 

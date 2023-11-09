@@ -2,8 +2,8 @@ import json
 
 from flask import jsonify, request, Response
 
-from services.activity_service import *
 from services.activity_service import ActivityService
+from services.location_service import LocationService
 from config import app
 import logging
 
