@@ -9,7 +9,7 @@ import logging
 
 
 @app.route('/join', methods=['POST'])
-def get_activities():
+def join():
     try:
         service = ActivityToUserService()
         data = json.loads(request.data)
@@ -23,7 +23,7 @@ def get_activities():
 
 
 @app.route('/quit', methods=['POST'])
-def create_activity():
+def quit():
     service = ActivityToUserService()
     try:
         data = json.loads(request.data)
@@ -34,3 +34,21 @@ def create_activity():
         logging.error(error)
         service.rollback()
         return jsonify(error.__str__(), 400)
+
+
+@app.route('/atus', methods=['GET'])
+def get_activity_to_users():
+    try:
+        atu_service = ActivityToUserService()
+        atu_data = [] 
+        for atu in atu_service.get_all_activity_to_users():
+            atu_data.append({'id': atu.id, 'username': atu.username})
+
+        return jsonify(atu_data)
+
+    except Exception as error:
+        logging.error(error)
+        # return jsonify(error), 400
+        return jsonify(400)
+
+

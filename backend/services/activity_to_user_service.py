@@ -3,23 +3,29 @@ from models.user import User
 from models.activity import Activity
 from repository.activity_to_user_repository import ActivityToUserRepository
 from repository.activity_repository import ActivityRepository
+from repository.user_repository import UserRepository
+from services.base_service import BaseService
+from sqlalchemy import select
 
 class ActivityToUserService(BaseService):
     _repo = ActivityToUserRepository()
     _activity_repo = ActivityRepository()
 
     def get_activity_to_user(self, username, id):
-        result = self._repo.get_with_many(User.username == username, Activity.id == id)
+        result = self._repo.get_session().query(ActivityToUser).filter(User.username==username, Activity.id==id).first()
         return result
 
     def join_activity(self, username, id):
-        if(get_activity_to_user(username, id) is None):
+        if(self.get_activity_to_user(username, id) is None):
             activityToUser = ActivityToUser(id = id, username = username) 
             self._repo.add(activityToUser)
             return activityToUser
-        activityToUser = get_activity_to_user(username, id)
+        activityToUser = self.get_activity_to_user(username, id)
+        print(activityToUser)
         return activityToUser
 
     def remove_user_from_activity(self, username, id):
         return self._repo.remove(username, id)
 
+    def get_all_activity_to_users(self):
+        return self._repo.get_all()

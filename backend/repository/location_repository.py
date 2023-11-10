@@ -7,5 +7,4 @@ class LocationRepository(BaseRepository):
         self._model = Location
 
     def get_by_id(self, location_id):
-        print(Location.query.get(int(location_id)))
         return Location.query.get(int(location_id))
