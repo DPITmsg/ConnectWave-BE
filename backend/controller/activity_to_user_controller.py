@@ -14,7 +14,8 @@ def join():
         service = ActivityToUserService()
         data = json.loads(request.data)
         created_join = service.join_activity(username=data['username'], id=data['id'])
-        return jsonify(created_join)
+        print("MERE")
+        return jsonify(200)
 
     except Exception as error:
         logging.error(error)
@@ -34,7 +35,6 @@ def quit():
         logging.error(error)
         service.rollback()
         return jsonify(error.__str__(), 400)
-
 
 @app.route('/atus', methods=['GET'])
 def get_activity_to_users():

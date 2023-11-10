@@ -16,9 +16,19 @@ def get_activities():
     try:
         activity_service = ActivityService()
         location_service = LocationService()
+        atu_service = ActivityToUserService()
         activities = activity_service.get_all_activities()
         activity_data = []
+        atu_data = []
+        atu_data = atu_service.get_all_activity_to_users()
         for activity in activities:
+            participant_usernames = []
+            for atu in atu_data:
+                print(atu)
+                if atu.id == activity.id:
+                    participant_usernames.append(atu.username)
+            participants = ','.join(participant_usernames)
+
             if (location_service.get_location(activity.location_id) is None):
                 location = None
             else:
@@ -27,7 +37,7 @@ def get_activities():
             activity_data.append({'id': activity.id, 'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
                  'author': activity.author, 'title': activity.name, 'tags': activity.tags,
                  'category': activity.category, 'address': activity.address, 'description': activity.description,
-                 'location': location, 'maxParticipants': activity.max_participants})
+                                  'location': location, 'participants': participants, 'maxParticipants': activity.max_participants})
         return jsonify(activity_data)
 
     except Exception as error:

@@ -10,15 +10,21 @@ from sqlalchemy import select
 class ActivityToUserService(BaseService):
     _repo = ActivityToUserRepository()
     _activity_repo = ActivityRepository()
+    _session = ActivityToUserRepository().get_session()
 
     def get_activity_to_user(self, username, id):
-        result = self._repo.get_session().query(ActivityToUser).filter(User.username==username, Activity.id==id).first()
-        return result
+        result = self._session.query(ActivityToUser).all()
+        for atu in result:
+            if atu.username == username and atu.id == id:
+                print(result, username, id)
+                return result
+        return None
 
     def join_activity(self, username, id):
         if(self.get_activity_to_user(username, id) is None):
             activityToUser = ActivityToUser(id = id, username = username) 
             self._repo.add(activityToUser)
+            print("mere")
             return activityToUser
         activityToUser = self.get_activity_to_user(username, id)
         print(activityToUser)
