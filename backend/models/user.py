@@ -14,9 +14,9 @@ class User(db.Model):
     display_name: Mapped[str] = db.mapped_column(default="")
     password: Mapped[str] = db.mapped_column()
     profile_picture: Mapped[Optional[str]] = db.mapped_column(default="")
-    about: Mapped[str] = db.mapped_column()
-    interests: Mapped[str] = db.mapped_column
-    tags: Mapped[str] = db.mapped_column
+    about: Mapped[str] = db.mapped_column(default="")
+    interests: Mapped[str] = db.mapped_column(default="")
+    tags: Mapped[str] = db.mapped_column(default="")
     activities_created: Mapped[str] = db.mapped_column(default="")
     activities_enrolled: Mapped[str] = db.mapped_column(default="")
     activities_completed: Mapped[str] = db.mapped_column(default="")

@@ -102,3 +102,7 @@ def create_activity():
         logging.error(error)
         activity_service.rollback()
         return jsonify(error.__str__(), 400)
+
+
+
+
