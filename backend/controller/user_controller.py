@@ -2,9 +2,9 @@ import json
 
 from flask import jsonify, request
 
-from backend.services.user_service import UserService
+from services.user_service import UserService
 from config import app
-from backend.models.user import User
+from models.user import User
 import logging
 
 
