@@ -99,7 +99,6 @@ def create_activity():
                                                          time=data['time'], tags=string_of_tags, address=data['address'],
                                                          author=data['author'])
         activity_to_user_service.join_activity(data['author'], created_activity.id)
-        activity_to_user_service.join_activity("epsilon", created_activity.id)
 
         participants = data['participants']
         for participant in participants:
