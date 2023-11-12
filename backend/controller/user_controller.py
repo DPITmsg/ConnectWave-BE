@@ -156,34 +156,33 @@ def get_user_by_username():
         return jsonify(error.__str__(), 400)
 
         
-# TODO: finsih this endpoint
-# @app.route('/edit_user', methods=['POST'])
-# def edit_user():
-#     user_service = UserService()
-#     try:
-#         data = json.loads(request.data)
-#
-#         tags = data['tags']
-#         string_of_tags = ""
-#         for tag in tags:
-#             string_of_tags += tag
-#             string_of_tags += ", "
-#         string_of_tags = string_of_tags[:len(string_of_tags) - 2]
-#
-#         interests = data['interests']
-#         string_of_interests = ""
-#         for interest in interests:
-#             string_of_interests += interest
-#             string_of_interests += ", "
-#         string_of_interests = string_of_interests[:len(string_of_interests) - 2]
-#
-#         user_service.update_user_by_username(username=data['username'], new_display_name=data['name'],
-#                                                         new_age=data['age'], new_rating=data['rating'],
-#                                                         new_about=data['about'], new_tags=string_of_tags,
-#                                                         new_interests=string_of_interests)
-#         return str(200)
-#
-#     except Exception as error:
-#         logging.error(error)
-#         user_service.rollback()
-#         return jsonify(error.__str__(), 400)
+@app.route('/edit_user', methods=['POST'])
+def edit_user():
+    user_service = UserService()
+    try:
+        data = json.loads(request.data)
+
+        tags = data['tags']
+        string_of_tags = ""
+        for tag in tags:
+            string_of_tags += tag
+            string_of_tags += ","
+        string_of_tags = string_of_tags[:len(string_of_tags) - 2]
+
+        interests = data['interests']
+        string_of_interests = ""
+        for interest in interests:
+            string_of_interests += interest
+            string_of_interests += ","
+        string_of_interests = string_of_interests[:len(string_of_interests) - 2]
+
+        updated_user = user_service.update_user_by_username(username=data['username'], new_display_name=data['name'],
+                                                        new_age=data['age'], new_rating=data['rating'],
+                                                        new_about=data['about'], new_tags=string_of_tags,
+                                                        new_interests=string_of_interests)
+        return jsonify(str(updated_user.username), 200)
+
+    except Exception as error:
+        logging.error(error)
+        user_service.rollback()
+        return jsonify(error.__str__(), 400)

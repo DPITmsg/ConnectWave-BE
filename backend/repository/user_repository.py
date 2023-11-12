@@ -1,6 +1,6 @@
 from repository.base_repository import BaseRepository
 from models.user import User
-from sqlalchemy import update
+from sqlalchemy import update, select
 
 
 class UserRepository(BaseRepository):
@@ -14,6 +14,9 @@ class UserRepository(BaseRepository):
         return User.query.filter_by(username=username, password=password)
 
 
-    # def update_user(self, username, new_display_name, new_age, new_rating, new_about, new_interests, new_tags):
-    #     return update(User).where(User.username == username).values(
-    #         {"age": new_age})
+    def update_user(self, username, new_display_name, new_age, new_rating, new_about, new_interests, new_tags):
+        BaseRepository(User)._session.execute(update(self._model).where(self._model.username == username).values(
+            {'display_name': new_display_name, 'age': new_age, 'rating': new_rating, 'about': new_about,
+             'interests': new_interests, 'tags': new_tags}))
+        BaseRepository(User)._session.commit()
+        return User.query.get(username)

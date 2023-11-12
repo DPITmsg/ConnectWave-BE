@@ -32,6 +32,10 @@ class UserService(BaseService):
     #                             new_tags):
     #     return self._repo.update_user(username, new_display_name, new_age, new_rating, new_about, new_interests,
     #                                   new_tags)
+    def update_user_by_username(self, username, new_display_name, new_age, new_rating, new_about, new_interests,
+                                new_tags):
+        return self._repo.update_user(username, new_display_name, new_age, new_rating, new_about, new_interests,
+                                      new_tags)
 
     def login(self, username, password):
         return self._repo.get_user_by_username_and_password(username, password)
