@@ -25,6 +25,8 @@ class ActivityService(BaseService):
 
     def remove_activity(self, column, value):
         return self._repo.remove(column, value)
+    def delete_activity(self, activity_id):
+        return self._repo.remove_activity(activity_id)
 
     def update_activity(self, column, value, **kwargs):
         return self._repo.update(column, value, **kwargs)

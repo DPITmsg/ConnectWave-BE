@@ -103,6 +103,21 @@ def create_activity():
         activity_service.rollback()
         return jsonify(error.__str__(), 400)
 
+@app.route('/delete_activity', methods=['DELETE'])
+def delete_activity():
+    activity_service = ActivityService()
+    try:
+        deleted_activity = activity_service.delete_activity(int(request.args.get('id')))
+        return jsonify(str(deleted_activity.id), 200)
+
+    except Exception as error:
+        logging.error(error)
+        # return jsonify(error), 400
+        return "Not found", 404
+
+
+
+
 
 
 
