@@ -26,10 +26,10 @@ class UserService(BaseService):
     def update_user(self, column, value, **kwargs):
         return self._repo.update(column, value, **kwargs)
 
-    # def update_user_by_username(self, username, new_display_name, new_age, new_rating, new_about, new_interests,
-    #                             new_tags):
-    #     return self._repo.update_user(username, new_display_name, new_age, new_rating, new_about, new_interests,
-    #                                   new_tags)
+    def update_user_by_username(self, username, new_display_name, new_age, new_rating, new_about, new_interests,
+                                new_tags):
+        return self._repo.update_user(username, new_display_name, new_age, new_rating, new_about, new_interests,
+                                      new_tags)
 
     def get_user(self, username):
         return self._repo.get_by_username(username)
