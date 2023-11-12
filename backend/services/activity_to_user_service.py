@@ -20,9 +20,9 @@ class ActivityToUserService(BaseService):
                 return result
         return None
 
-    def join_activity(self, username, id):
+    def join_activity(self, username, id, is_administrator=False):
         if(self.get_activity_to_user(username, id) is None):
-            activityToUser = ActivityToUser(id = id, username = username) 
+            activityToUser = ActivityToUser(id = id, username = username, administrator=is_administrator) 
             self._repo.add(activityToUser)
             print("mere")
             return activityToUser
@@ -35,3 +35,11 @@ class ActivityToUserService(BaseService):
 
     def get_all_activity_to_users(self):
         return self._repo.get_all()
+    
+    def get_activities_created(self, username):
+        return [activity.id for activity, administrator in self._session.query(ActivityToUser, ActivityToUser.administrator)
+                .filter_by(username=username, administrator=True).join(Activity).all()]
+
+    def get_enrolled_activities(self, username):
+        return [activity.id for activity, administrator in self._session.query(ActivityToUser, ActivityToUser.administrator)
+                .filter_by(username=username, administrator=False).join(Activity).all()]

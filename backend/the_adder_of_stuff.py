@@ -10,7 +10,6 @@ def add_stuff():
     act_s = ActivityService()
     loc_s = LocationService()
     atu_s = ActivityToUserService()
-    # atu_s.join_activity('xman', 0)
     # usr_s.add_user(username="alpha", age=1, display_name="Alpha", password="alpha-pass", profile_picture="google.com")
     # usr_s.add_user(username="beta", age=2, display_name="Beta", password="beta-pass", profile_picture="google.com")
     # usr_s.add_user(username="gamma", age=3, display_name="Gamma", password="gamma-pass", profile_picture="google.com")

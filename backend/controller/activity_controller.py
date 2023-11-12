@@ -46,21 +46,35 @@ def get_activities():
         return jsonify(400)
 
 
-@app.route('/activity_by_id', methods=['GET'])
+@app.route('/activity_by_id', methods=['GET', 'POST'])
 def get_activity_by_id():
+    activity_service = ActivityService()
+    location_service = LocationService()
+    atu_service = ActivityToUserService()
+
+    atu_data = []
+    atu_data = atu_service.get_all_activity_to_users()
     try:
-        activity_service = ActivityService()
-        location_service = LocationService()
-        activity = activity_service.get_activity(request.args.get('id'))
+        data = json.loads(request.data)
+        id = int(data['id'])
+        print(id)
+        activity = activity_service.get_activity(id)
         if (location_service.get_location(activity.location_id) is None):
             location = None
         else:
             location = {'latitude': location_service.get_location(activity.location_id).location_x,
                         'longitude': location_service.get_location(activity.location_id).location_y}
-        activity_data = {'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
+            
+        participant_usernames = []
+        for atu in atu_data:
+            if atu.id == activity.id:
+                participant_usernames.append(atu.username)
+        participants = ','.join(participant_usernames)
+        
+        activity_data = {'id': activity.id,'date': activity.start_date, 'endDate': activity.end_date, 'time': activity.time,
                  'author': activity.author, 'title': activity.name, 'tags': activity.tags,
                  'category': activity.category, 'address': activity.address, 'description': activity.description,
-                 'location': location, 'maxParticipants': activity.max_participants}
+                                  'location': location, 'participants': participants, 'maxParticipants': activity.max_participants}
         return jsonify(activity_data)
 
     except Exception as error:
@@ -98,8 +112,7 @@ def create_activity():
                                                          start_date=data['date'], end_date=data['endDate'],
                                                          time=data['time'], tags=string_of_tags, address=data['address'],
                                                          author=data['author'])
-        activity_to_user_service.join_activity(data['author'], created_activity.id)
-        activity_to_user_service.join_activity("epsilon", created_activity.id)
+        activity_to_user_service.join_activity(data['author'], created_activity.id, is_administrator=True)
 
         participants = data['participants']
         for participant in participants:
@@ -113,6 +126,7 @@ def create_activity():
         logging.error(error)
         activity_service.rollback()
         return jsonify(error.__str__(), 400)
+    
 
 
 

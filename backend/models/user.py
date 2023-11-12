@@ -25,7 +25,7 @@ class User(db.Model):
 
 
     # Other data
-    rating: Mapped[Optional[float]] = db.mapped_column()
+    rating: Mapped[Optional[float]] = db.mapped_column(default=0.0)
     # favorite_category: Mapped[]
 
 

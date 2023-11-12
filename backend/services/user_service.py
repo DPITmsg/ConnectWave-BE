@@ -6,11 +6,14 @@ from services.base_service import BaseService
 class UserService(BaseService):
     _repo = UserRepository()
 
-    def add_user(self, username: str, age: int, display_name: str, password: str, profile_picture: str, rating: float,
-                 about: str, interests: str = '', tags: str = '', activities_created: str = '', activities_enrolled: str = '',
-                 activities_completed: str = '', friends: str = ''):
-        user = self.parse_user(username, age, display_name, password, profile_picture, rating, about, interests, tags,
-                               activities_created, activities_enrolled, activities_completed, friends)
+    def add_user(self, username: str, age: int, display_name: str, password: str, profile_picture: str, about: str,
+                 interests: str = '', tags: str = '', activities_created: str = '', activities_enrolled: str = '',
+                 activities_completed: str = '', friends: str = '', rating: float = 0.0):
+        # Ensure that the rating is a float
+
+
+        user = self.parse_user(username, age, display_name, password, profile_picture, about, interests, tags,
+                               activities_created, activities_enrolled, activities_completed, friends, rating=0.0)
         return self._repo.add(user)
 
     def remove_user(self, column, value):
@@ -39,10 +42,10 @@ class UserService(BaseService):
     def rollback(self):
         self._repo.rollback()
 
-    def parse_user(self, username, age, display_name, password, about, interests, tags, activities_created: str = "",
-                   activities_enrolled: str = "", activities_completed: str = "", friends: str = "", rating: int = 0,
-                   profile_picture: str = ""):
+    def parse_user(self, username, age, display_name, password, profile_picture, about, interests, tags, activities_created: str = "",
+                   activities_enrolled: str = "", activities_completed: str = "", friends: str = "",
+                   rating: float = 0.0,):
         return User(username=username, age=age, display_name=display_name, password=password,
                     about=about, interests=interests, tags=tags,
                     activities_created=activities_created, activities_enrolled=activities_enrolled,
-                    activities_completed=activities_completed, friends=friends, rating=rating)
+                    activities_completed=activities_completed, friends=friends, rating=rating, profile_picture=profile_picture)

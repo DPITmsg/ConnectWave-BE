@@ -56,7 +56,7 @@ class BaseRepository():
         return self.get_with_key(value)
 
     def remove(self, column, value):
-        delete_target = self.get_with_key(key)
+        delete_target = self.get_with_key(self.key)
         self._session.execute(delete(self._model.__tablename__).where(column=value))
         self._session.commit()
         return delete_target
