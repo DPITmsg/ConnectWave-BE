@@ -32,6 +32,7 @@ def get_users():
                 'interests': user.interests,
                 'activities_created': created_activities,
                 'activities_enrolled': enrolled_activities,
+                'pfp': user.profile_picture
             })
 
         return jsonify(user_data)
@@ -64,7 +65,7 @@ def create_user():
 
         created_user = service.add_user(username=data['username'], age=data['age'], display_name=data['name'],
                                         password=data['password'], tags=string_of_tags, interests=string_of_interests,
-                                        about=data['about'], rating=data['rating'], profile_picture='')
+                                        about=data['about'], rating=data['rating'], profile_picture=data['pfp'])
         return created_user.username, 200
 
     except Exception as error:
@@ -104,6 +105,7 @@ def login_user():
                 'about': user.about,
                 'activities_created': created_activities,
                 'activities_enrolled': enrolled_activities,
+                'pfp': user.profile_picture
             }
             return jsonify({'user': response_data}), 200
         
@@ -143,6 +145,7 @@ def get_user_by_username():
                 'about': user.about,
                 'activities_created': created_activities,
                 'activities_enrolled': enrolled_activities,
+                'pfp': user.profile_picture
         }
         return jsonify(response_data), 200
         

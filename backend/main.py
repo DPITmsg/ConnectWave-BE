@@ -16,7 +16,7 @@ from repository.location_repository import *
 from the_adder_of_stuff import add_stuff
 import sys
 
-add_stuff()
+#add_stuff()
 
 if __name__ == '__main__':
     print(sys.path)
