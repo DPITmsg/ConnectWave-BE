@@ -28,7 +28,6 @@ def add_friend():
 def accept_friend_request():
     service = UserToUserService() 
     try:
-
         data = json.loads(request.data)
         username_user = data['username_user']
         username_friend = data['username_friend']
@@ -41,10 +40,9 @@ def accept_friend_request():
         return jsonify(error.__str__(), 400)
 
 @app.route('/decline_friend_request', methods=['POST'])
-def decline_friend_request():
+def accept_friend_request():
     service = UserToUserService() 
     try:
-
         data = json.loads(request.data)
         username_user = data['username_user']
         username_friend = data['username_friend']
@@ -55,3 +53,29 @@ def decline_friend_request():
         logging.error(error)
         service.rollback()
         return jsonify(error.__str__(), 400)
+
+@app.route('/friend_relationships', methods=['GET'])
+def friends():
+    service = UserToUserService()
+    try:
+        result = service.get_all()
+        return jsonify(result)
+   
+    except Exception as error:
+        logging.error(error)
+        service.rollback()
+        return jsonify(error.__str__(), 400)
+
+@app.rout('/friends_by_username', methods='GET')
+def friends_by_username():
+    service = UserToUserService()
+    try:
+        result = service.get_by_username()
+        return jsonify(result)
+   
+    except Exception as error:
+        logging.error(error)
+        service.rollback()
+        return jsonify(error.__str__(), 400)
+
+
