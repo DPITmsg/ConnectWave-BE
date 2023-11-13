@@ -13,7 +13,7 @@ class UserToUserService(BaseService):
         result = self._session.query(UserToUser).all()
         for utu in result:
             if utu.username1 == username1 and utu.username2 == username2:
-                return result
+                return utu
         return None
 
     def get_all(self):
@@ -30,7 +30,7 @@ class UserToUserService(BaseService):
 
     def send_request(self, username_user, username_friend):
         if self.get_user_to_user(username_user, username_friend) is None:
-            userToUser = UserToUser(username_user, username_friend)
+            userToUser = UserToUser(username1 = username_user, username2 = username_friend)
             self._repo.add(userToUser)
             return userToUser
         userToUser = self.get_user_to_user(username_user, username_friend)
@@ -38,8 +38,8 @@ class UserToUserService(BaseService):
 
     def add_friend(self, username_user, username_friend):
         request: UserToUser = self.get_user_to_user(username_user, username_friend)
-        if result is not None:
-            request.accepted = True
+        if request is not None:
+            request.accepted = True 
             return 200
         return 404
         
@@ -53,7 +53,7 @@ class UserToUserService(BaseService):
     def accept_request(self, username_user, username_friend):
         request: UserToUser = self.get_user_to_user(username_user, username_friend)
         if request is not None:
-            self._repo.add_friend(username_user, username_friend)
+            self.add_friend(username_user, username_friend)
             return 200
         return 404
        

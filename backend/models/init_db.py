@@ -7,8 +7,8 @@ from models.location import Location
 
 # importing models is required before initializing the database
 from models.activity_to_user import ActivityToUser
-from models.friend_list import FriendList
-
+# from models.friend_list import FriendList     # deprecated (my bad, I forgot it existed when I made UseToUser)
+from models.user_to_user import UserToUser
 
 def init_db():
     with app.app_context():
