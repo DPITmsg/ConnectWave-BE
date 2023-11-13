@@ -1,6 +1,7 @@
 from repository.base_repository import BaseRepository
 from models.user_to_user import UserToUser
 from models.user import User
+from sqlalchemy import select, delete
 
 
 
@@ -9,14 +10,24 @@ class UserToUserRepository(BaseRepository):
         self._model = UserToUser  
     
     def remove(self, username1, username2):
-        result = select(self._model).filter_by(User.username == username1, User.username == username2)
-        if result is not None:
-            self._session.execute(delete(self._model.__tablename__).where(User.username == username1, User.username == username2))
+        result = self._session.query(UserToUser).all()
+        filtered = UserToUser()
+        for atu in result:
+            if atu.username1 == username1 and atu.username2 == username2:
+                filtered = atu
+        if filtered is not None:
+            self._session.query(UserToUser).filter(User.username == username1, User.username == username2)\
+            .delete(synchronize_session='auto')
             self._session.commit()
         else: 
-            result = select(self._model).filter_by(User.username == username2, User.username == username1)
-            if result is not None:
-                self._session.execute(delete(self._model.__tablename__).where(User.username == username1, User.username == username2))
+            result = self._session.query(UserToUser).all()
+            filtered = UserToUser()
+            for atu in result:
+                if atu.username2 == username1 and atu.username1 == username2:
+                    filtered = atu
+            if filtered is not None:
+                self._session.query(UserToUser).filter(User.username == username2, User.username == username1)\
+                .delete(synchronize_session='auto')
                 self._session.commit()
             else:
                 return 404

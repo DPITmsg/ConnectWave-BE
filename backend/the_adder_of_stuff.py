@@ -22,7 +22,7 @@ def add_stuff():
 
     utu_s.send_request("xman", "cooper")
     utu_s.accept_request("xman", "cooper")
-
+    # utu_s.decline_request("xman", "cooper")
     #
     # loc_s.add_location(46.7781, 23.5775)
     # loc_s.add_location(46.7723, 23.6123)
