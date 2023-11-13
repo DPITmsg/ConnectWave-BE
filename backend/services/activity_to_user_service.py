@@ -16,7 +16,6 @@ class ActivityToUserService(BaseService):
         result = self._session.query(ActivityToUser).all()
         for atu in result:
             if atu.username == username and atu.id == id:
-                print(result, username, id)
                 return result
         return None
 
@@ -24,10 +23,8 @@ class ActivityToUserService(BaseService):
         if(self.get_activity_to_user(username, id) is None):
             activityToUser = ActivityToUser(id = id, username = username, administrator=is_administrator) 
             self._repo.add(activityToUser)
-            print("mere")
             return activityToUser
         activityToUser = self.get_activity_to_user(username, id)
-        print(activityToUser)
         return activityToUser
 
     def remove_user_from_activity(self, username, id):
