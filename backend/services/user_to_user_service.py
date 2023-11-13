@@ -26,8 +26,10 @@ class UserToUserService(BaseService):
         filtered = []
         for utu in result:
             if utu.username1 == username or utu.username2 == username:
-                filtered.append(utu)
+                if utu.accepted == True:
+                    filtered.append(utu)
         return filtered
+    
 
     def send_request(self, username_user, username_friend):
         if self.get_user_to_user(username_user, username_friend) is None:
@@ -40,7 +42,7 @@ class UserToUserService(BaseService):
     def add_friend(self, username_user, username_friend):
         request: UserToUser = self.get_user_to_user(username_user, username_friend)
         if request is not None:
-            request.accepted = True 
+            request.accepted = True
             return 200
         return 404
         
@@ -57,4 +59,9 @@ class UserToUserService(BaseService):
             self.add_friend(username_user, username_friend)
             return 200
         return 404
-       
+    
+    def get_friend_requests(self, username):
+        result = self._session.query(UserToUser).filter(
+            (UserToUser.username1 == username) & (UserToUser.accepted == False)
+        ).all()
+        return result

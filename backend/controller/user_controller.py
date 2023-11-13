@@ -8,6 +8,8 @@ from config import app
 from models.user import User
 import logging
 
+from services.user_to_user_service import UserToUserService
+
 
 @app.route('/users', methods=['GET'])
 def get_users():
@@ -105,7 +107,7 @@ def login_user():
                 'about': user.about,
                 'activities_created': created_activities,
                 'activities_enrolled': enrolled_activities,
-                'pfp': user.profile_picture
+                'pfp': user.profile_picture,
             }
             return jsonify({'user': response_data}), 200
         

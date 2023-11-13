@@ -61,7 +61,7 @@ def friends():
         result = service.get_all()
         utu_data = []
         for utu in result:
-            utu_data.append({'username1': utu.username1, 'username2': utu.username2})
+            utu_data.append({'username1': utu.username1, 'username2': utu.username2, 'accepted': utu.accepted})
         return jsonify(utu_data)
    
     except Exception as error:
@@ -78,7 +78,24 @@ def friends_by_username():
         utu_data = []
         for utu in result:
             utu_data.append({'username1': utu.username1, 'username2': utu.username2})
-        return jsonify(utu_data)  
+        return jsonify(utu_data), 200
+
+    except Exception as error:
+        logging.error(error)
+        service.rollback()
+        return jsonify(error.__str__(), 400)
+    
+
+@app.route('/friend_requests_by_username', methods=['POST', 'GET'])
+def friend_requests_by_username():
+    service = UserToUserService()
+    try:
+        data = json.loads(request.data)
+        result = service.get_friend_requests(data['username'])
+        utu_data = []
+        for utu in result:
+            utu_data.append({'username1': utu.username1, 'username2': utu.username2})
+        return jsonify(utu_data), 200
 
     except Exception as error:
         logging.error(error)
