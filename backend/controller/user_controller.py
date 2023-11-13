@@ -167,14 +167,14 @@ def edit_user():
         for tag in tags:
             string_of_tags += tag
             string_of_tags += ","
-        string_of_tags = string_of_tags[:len(string_of_tags) - 2]
+        string_of_tags = string_of_tags[:len(string_of_tags) - 1]
 
         interests = data['interests']
         string_of_interests = ""
         for interest in interests:
             string_of_interests += interest
             string_of_interests += ","
-        string_of_interests = string_of_interests[:len(string_of_interests) - 2]
+        string_of_interests = string_of_interests[:len(string_of_interests) - 1]
 
         updated_user = user_service.update_user_by_username(username=data['username'], new_display_name=data['name'],
                                                         new_age=data['age'], new_rating=data['rating'],

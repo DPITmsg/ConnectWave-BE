@@ -129,9 +129,14 @@ def create_activity():
 
 @app.route('/delete_activity', methods=['DELETE'])
 def delete_activity():
+    print('entered')
     activity_service = ActivityService()
     try:
-        deleted_activity = activity_service.delete_activity(int(request.args.get('id')))
+        print('wut')
+        data = json.loads(request.data)
+        id = int(data['id'])
+        print(id)
+        deleted_activity = activity_service.delete_activity(id)
         return jsonify(str(deleted_activity.id), 200)
 
     except Exception as error:
