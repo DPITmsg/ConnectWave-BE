@@ -6,4 +6,4 @@
 
 ## Backend made using Flask
 
-## [Frontend](https://github.com/JonSnowv2/ConnectWave-BE)
+## [Frontend](https://github.com/JonSnowv2/ConnectWave-FE)
