@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18649ace-1846-4f54-8355-6d5dcedc8d88" name="Changes" comment="Created activity controller (only /activities endpoint works for now)">
-      <change beforePath="$PROJECT_DIR$/.idea/ConnectWave-BE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ConnectWave-BE.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="18649ace-1846-4f54-8355-6d5dcedc8d88" name="Changes" comment="Fixed bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controller/activity_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controller/activity_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/activity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/init_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/activity_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/activity_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/base_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/base_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/location_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/location_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/user_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695824311459</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed bugs">
+      <option name="closed" value="true" />
+      <created>1696427962552</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696427962552</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +175,7 @@
     <MESSAGE value="Added todos and comments" />
     <MESSAGE value="Fixed user controller" />
     <MESSAGE value="Created activity controller (only /activities endpoint works for now)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created activity controller (only /activities endpoint works for now)" />
+    <MESSAGE value="Fixed bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs" />
   </component>
 </project>

@@ -12,6 +12,9 @@ class BaseRepository():
     # Used only for spontaneous instantiation of a repository control scheme
     def __init__(self, model):
         self._model = model
+    
+    def get_session(self):
+        return self._session    
 
     def add(self, entry):
         self._session.add(entry)
@@ -29,12 +32,20 @@ class BaseRepository():
         return result
 
     def get_where(self, column, value):
-        result = select(self._model).filter_by(column=value)
+        result = select(self._model).where(column==value)
+        return result
+
+    def get_with_many(self, *params):
+        result = select(self._model)
+        for i in range(params.__len__()):
+            result.where(params[i]==params[i+1])
+            i+=1;
+
         return result
 
     def get_with_key(self, key):
         # self._session.refresh(self._model)
-        result = self._session.get(_model, key)
+        result = self._session.get(self._model, key)
         return result
 
     def update(self, column, value, **kwargs):
@@ -45,7 +56,7 @@ class BaseRepository():
         return self.get_with_key(value)
 
     def remove(self, column, value):
-        delete_target = self.get_with_key(key)
+        delete_target = self.get_with_key(self.key)
         self._session.execute(delete(self._model.__tablename__).where(column=value))
         self._session.commit()
         return delete_target
